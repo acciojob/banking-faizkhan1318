@@ -71,7 +71,7 @@ public class BankAccount {
         if(this.balance-amount < this.minBalance){
             throw new Exception("Insufficient Balance");
         }
-        this.balance -= amount;
+        this.balance = this.balance - amount;
     }
 
 
