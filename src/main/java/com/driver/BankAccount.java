@@ -9,6 +9,7 @@ public class BankAccount {
     private String name;
     private double balance;
     private double minBalance;
+    private String accountNumber;
 
     public BankAccount(String name, double balance, double minBalance) {
         this.name = name;
@@ -44,21 +45,21 @@ public class BankAccount {
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
-        if(sum < 0 || sum > digits*9){
-            throw new accountNumberCannotBeGenratedException("Account Number can not be generated");
-        }
-        String accNo = "";
-        Random rand = new Random();
-        int n;
-        int remainingSum = sum;
-        for(int i=0; i<digits; i++){
-            int max = min(remainingSum+1, 10);
-            n=rand.nextInt(max);
-            accNo+=String.valueOf(n);
-            remainingSum -= n;
-        }
-        return accNo;
+
+        createAccount("",digits,sum);
+        return accountNumber;
+
     }
+
+    private void createAccount(String str, int digit, int sum) {
+        if(str.length()>=digit){
+            int count=0;   //checking its length
+            for(int i=0;i<str.length();i++) count+=(str.charAt(i)-'a');
+            if(count==sum) this.accountNumber=str;
+            return;
+        }
+    }
+
 
     public void deposit(double amount) {
         //add amount to balance
