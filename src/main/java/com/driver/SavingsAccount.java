@@ -43,6 +43,8 @@ public class SavingsAccount extends BankAccount{
         if(amount > super.getBalance()){
             throw new Exception("Insufficient Balance");
         }
+        super.setBalance(super.getBalance()-amount);
+        nWithdraws++;
 
     }
 

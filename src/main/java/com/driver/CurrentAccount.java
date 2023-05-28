@@ -35,33 +35,25 @@ public class CurrentAccount extends BankAccount{
         }
         int size = tradeLicenseId.length();
         HashMap<Character,Integer> map = new HashMap<>();
-
         getFrequencyMap(size, map);
-        //odd even
         if(Collections.max(map.values()) > size/2) {
             throw new Exception("Valid License can not be generated");
         }
-
         while (!isValidTradeId()) {
             List<Character> list = tradeLicenseId.chars()
                     .mapToObj(e -> (char)e)
                     .collect(Collectors.toList());
             Collections.shuffle(list);
             StringBuilder sb = new StringBuilder();
-
-            // Appends characters one by one
+            // Appends character one by one
             for (Character ch : list) {
                 sb.append(ch);
             }
-
             String tradeId = sb.toString();
             this.tradeLicenseId = tradeId;
         }
-
         return;
-
     }
-
     private boolean isValidTradeId() {
         int size = tradeLicenseId.length();
         for(int i = 0, j = 1; i< size && j< size; i++, j++) {
@@ -74,7 +66,6 @@ public class CurrentAccount extends BankAccount{
         }
         return false;
     }
-
     private void getFrequencyMap(int size, HashMap<Character, Integer> map) {
         for(int i = 0; i< size; i++) {
             if(map.containsKey(tradeLicenseId.charAt(i))) {
@@ -85,6 +76,4 @@ public class CurrentAccount extends BankAccount{
             }
         }
     }
-
-
 }
