@@ -49,7 +49,7 @@ public class BankAccount {
             createAccount("", digits, sum);
             return accountNumber;
         }catch (Exception e){
-            throw new accountNumberCannotBeGenratedException("Account Number can not be generated");
+            throw new Exception("Account Number can not be generated");
         }
 
     }
