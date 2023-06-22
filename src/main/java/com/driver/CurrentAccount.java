@@ -36,6 +36,7 @@ public class CurrentAccount extends BankAccount{
         int size = tradeLicenseId.length();
         HashMap<Character,Integer> map = new HashMap<>();
         getFrequencyMap(size, map);
+        //checking the maximum frequency of the characters so that they cannot consecutive characters
         if(Collections.max(map.values()) > size/2) {
             throw new Exception("Valid License can not be generated");
         }
@@ -69,8 +70,8 @@ public class CurrentAccount extends BankAccount{
     private void getFrequencyMap(int size, HashMap<Character, Integer> map) {
         for(int i = 0; i< size; i++) {
             if(map.containsKey(tradeLicenseId.charAt(i))) {
-                int value = map.get(tradeLicenseId.charAt(i));
-                map.put(tradeLicenseId.charAt(i), value+1 );
+                //int value = map.get(tradeLicenseId.charAt(i));
+                map.put(tradeLicenseId.charAt(i), map.get(tradeLicenseId.charAt(i))+1);
             } else {
                 map.put(tradeLicenseId.charAt(i), 1);
             }

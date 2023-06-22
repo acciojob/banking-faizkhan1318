@@ -44,23 +44,21 @@ public class BankAccount {
     public String generateAccountNumber(int digits, int sum) throws Exception{
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
-        //If it is not possible, throw "" exception
-        try {
-            createAccount("", digits, sum);
-            return accountNumber;
-        }catch (Exception e){
-            throw new Exception("Account Number can not be generated");
+        //If it is not possible, throw "Account Number can not be generated" exception
+        if(sum < 0 && sum > digits*9){
+            throw new accountNumberCannotBeGenratedException("Account Number can not be generated");
         }
+        int remaining = sum;
+        String acNo = "";
+        //9999600;
 
-    }
-
-    private void createAccount(String str, int digit, int sum) {
-        if(str.length()>=digit){
-            int count=0;   //checking its length
-            for(int i=0;i<str.length();i++) count+=(str.charAt(i)-'a');
-            if(count==sum) this.accountNumber=str;
-            return;
+        for(int i=0; i<digits; i++){
+            int dig = min(9, remaining);
+            acNo+=dig;
+            remaining -= dig;
         }
+        return acNo;
+
     }
 
 
